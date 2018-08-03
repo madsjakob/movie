@@ -21,8 +21,8 @@ export class MovieService {
   }
 
   getMovie(nr: number): Observable<Movie> {
-    //return this.http.get<Movie>(this.singleMovieUrl)
-    return of(MOVIES[3]);
+    return this.http.get<Movie>(this.singleMovieUrl)
+    //return of(MOVIES[3]);
   }
 
   
