@@ -18,7 +18,8 @@ export class MovieComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.movies = this.movieService.getMovies();
+    this.movieService.getMovies()
+      .subscribe(movies => this.movies = movies);
   }
 
 }
