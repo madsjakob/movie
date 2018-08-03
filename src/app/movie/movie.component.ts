@@ -10,6 +10,7 @@ import { Movie } from '../movie';
 export class MovieComponent implements OnInit {
 
   movies: Movie[];
+  selectedMovie: Movie;
 
   constructor(private movieService: MovieService) { }
 
@@ -22,4 +23,7 @@ export class MovieComponent implements OnInit {
       .subscribe(movies => this.movies = movies);
   }
 
+  onSelect(movie: Movie): void {
+    this.selectedMovie = movie;
+  }
 }
