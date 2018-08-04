@@ -34,6 +34,11 @@ export class MovieDetailComponent implements OnInit {
     
   }
 
+  save(): void {
+    this.movie.title = this.movie.title + '!';
+    this.movieService.saveMovie(this.movie).subscribe(() => this.goBack());
+  }
+
   goBack(): void {
     this.location.back();
   }

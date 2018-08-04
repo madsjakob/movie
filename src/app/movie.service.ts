@@ -8,6 +8,8 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieService {
+
+  private movieApiUrl = 'https://localhost:5001/api/movie';
   private movieUrl = 'http://localhost/movieapi/movies.json';
   private singleMovieUrl = 'http://localhost/movieapi/movie1.json';
 
@@ -16,13 +18,19 @@ export class MovieService {
 
   getMovies(): Observable<Movie[]> {
     console.log("Fetching movies");
-    return this.http.get<Movie[]>(this.movieUrl);
-    //return of(MOVIES);
+    return this.http.get<Movie[]>(this.movieApiUrl);
   }
 
   getMovie(nr: number): Observable<Movie> {
-    return this.http.get<Movie>(this.singleMovieUrl)
-    //return of(MOVIES[3]);
+    return this.http.get<Movie>(this.movieApiUrl + `/${nr}`);
+  }
+
+  saveMovie(movie: Movie): Observable<any> {
+    if(movie.nr <= 0) {
+      return this.http.post(this.movieApiUrl, movie);
+    } else {
+      return this.http.put(this.movieApiUrl + `/${movie.nr}`, movie);
+    }
   }
 
   

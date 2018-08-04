@@ -11,6 +11,7 @@ export class MovieComponent implements OnInit {
 
   movies: Movie[];
   selectedMovie: Movie;
+  myNewMovie: Movie;
 
   constructor(private movieService: MovieService) { }
 
@@ -25,5 +26,10 @@ export class MovieComponent implements OnInit {
 
   onSelect(movie: Movie): void {
     this.selectedMovie = movie;
+  }
+
+  newMovie(): void {
+    this.myNewMovie = { nr: 0, title: "Last Vegas" };
+    this.movieService.saveMovie(this.myNewMovie).subscribe(() => this.getMovies());
   }
 }
