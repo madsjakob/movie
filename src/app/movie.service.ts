@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Movie } from './movie';
-import { MOVIES } from './mock-movies';
 import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +10,16 @@ import { Observable, of } from 'rxjs';
 export class MovieService {
 
   private movieApiUrl = 'https://localhost:5001/api/movie';
-  private movieUrl = 'http://localhost/movieapi/movies.json';
-  private singleMovieUrl = 'http://localhost/movieapi/movie1.json';
 
   constructor(private http: HttpClient) { 
   }
 
   getMovies(): Observable<Movie[]> {
-    console.log("Fetching movies");
-    return this.http.get<Movie[]>(this.movieApiUrl);
+    return this.http.get<Movie[]>(this.movieApiUrl)
+      .pipe(
+        tap(movies => console.log('Fetched movies')),
+        catchError(this.handleError('getMovies', []))
+      );
   }
 
   getMovie(nr: number): Observable<Movie> {
@@ -33,5 +34,10 @@ export class MovieService {
     }
   }
 
-  
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+      return of(result as T);
+    }
+  }
 }
