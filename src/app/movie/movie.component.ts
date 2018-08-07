@@ -29,7 +29,7 @@ export class MovieComponent implements OnInit {
   }
 
   newMovie(): void {
-    this.myNewMovie = { nr: 0, title: "Last Vegas" };
+    this.myNewMovie = { tmdbid: 0, nr: 0, title: "Last Vegas" };
     this.movieService.saveMovie(this.myNewMovie).subscribe(() => this.getMovies());
   }
 }

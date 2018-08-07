@@ -7,6 +7,10 @@
       <span>Title:</span>
       <span>{{movie.title}}</span>
   </div>
+  <div *ngIf="tmdbMovie">
+      <span>Original Title:</span>
+      <span>{{tmdbMovie.original_title}}</span>
+  </div>
 </div>
 <span>{{id}}</span>
 <button (click)="save()">Save</button>
