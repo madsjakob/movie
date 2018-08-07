@@ -18,11 +18,15 @@ export class TmdbService {
 
   searchMovies(query: string) : Observable<TmdbSearchMovie> {
     console.log("Search movies");
-    return this.http.get<TmdbSearchMovie>(this.apiUrl + '/search/movie' + `?api_key=${this.internetMovieDatabaseApiKey}&query=${query}`)
+    return this.http.get<TmdbSearchMovie>(`${this.apiUrl}/search/movie?api_key=${this.internetMovieDatabaseApiKey}&query=${query}`)
   }
 
   getMovie(id: number) : Observable<TmdbMovie> {
     console.log(id);
-    return this.http.get<TmdbMovie>(`https://api.themoviedb.org/3/movie/${id}` + `?api_key=${this.internetMovieDatabaseApiKey}`);
+    return this.http.get<TmdbMovie>(`${this.apiUrl}/movie/${id}?api_key=${this.internetMovieDatabaseApiKey}`);
+  }
+
+  discover() : Observable<TmdbSearchMovie> {
+    return this.http.get<TmdbSearchMovie>(`${this.apiUrl}/discover/movie?api_key=${this.internetMovieDatabaseApiKey}`);
   }
 }

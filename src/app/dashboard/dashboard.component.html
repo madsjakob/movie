@@ -1,3 +1,9 @@
-<p>
+<div>
+<h1>
   Home of movies
-</p>
+</h1>
+  <div *ngFor="let movie of movies">
+    <img src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}" />
+    <span>{{movie.original_title}}</span>
+  </div>
+</div>

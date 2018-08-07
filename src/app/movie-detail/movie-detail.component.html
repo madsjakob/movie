@@ -10,6 +10,7 @@
   <div *ngIf="tmdbMovie">
       <span>Original Title:</span>
       <span>{{tmdbMovie.original_title}}</span>
+      <img src="https://image.tmdb.org/t/p/w92{{tmdbMovie.poster_path}}" />
   </div>
 </div>
 <span>{{id}}</span>
