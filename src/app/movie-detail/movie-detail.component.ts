@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+
 import { MovieService } from '../movie.service';
 import { Movie } from '../movie';
 import { TmdbService } from '../tmdb.service';
@@ -60,7 +61,6 @@ export class MovieDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.movie.title = this.movie.title + '!';
     this.movieService.saveMovie(this.movie).subscribe(() => this.goBack());
   }
 

@@ -1,11 +1,11 @@
 <div *ngIf="movie">
   <div>
       <span>NR:</span>
-      <span>{{movie.nr}}</span>
+      <span><input [(ngModel)]="movie.nr" placeholder="nr" ></span>
   </div>
   <div>
       <span>Title:</span>
-      <span>{{movie.title}}</span>
+      <span><input [(ngModel)]="movie.title" placeholder="title" ></span>
   </div>
   <div *ngIf="tmdbMovie">
       <span>Original Title:</span>
