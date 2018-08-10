@@ -1,20 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/home"><img  src="/assets/img/reel.png" /></a>
+  <a class="navbar-brand" routerLink="/home" (click)="selectMenuItem()"><img  src="/assets/img/reel.png" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+      <li *ngFor="let menuItem of menuItems" class="nav-item" [class.active]="menuItem === activeMenuItem" (click)="selectMenuItem(menuItem)">
+          <a class="nav-link" routerLink="{{menuItem.route}}" >{{menuItem.display}}</a>
+      </li>
+      <!-- <li class="nav-item" [class.active]="activeRoute === 'home'">
+        <a class="nav-link" routerLink="/home" >Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/collection">Collection</a>
+        <a class="nav-link" routerLink="/collection" (click)="setActiveRoute('collection')">Collection</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/movies">Movies</a>
-      </li>
+        <a class="nav-link" routerLink="/movies" (click)="setActiveRoute('movies')">Movies</a>
+      </li> -->
       <!-- <li class="nav-item dropdown" dropdown>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
@@ -36,3 +39,4 @@
     </form> -->
   </div>
 </nav>
+<h1>{{activeRoute}}</h1>
